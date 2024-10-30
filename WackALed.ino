@@ -6,7 +6,7 @@ void setup() {
     Serial.begin(9600);
 
     for (byte led = minLed; led <= maxLed; led++) pinMode(led, OUTPUT);
-    pinMode(buttonPin, INPUT_PULLUP)
+    pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void loop() {
