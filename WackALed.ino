@@ -4,6 +4,7 @@ byte buttonPin = 4;
 bool ultimoEstadoBotao = LOW;
 bool estadoBotaoDebouncing = LOW;
 long ultimoDebounce = 0;
+long tempoDesdeDebounce = 0;
 byte delayDebounce = 50;
 byte estadoJogo = 1;
 
@@ -17,9 +18,12 @@ void debouncing() {
 
     // Se o estado do botão for diferente, atualizar o tempo do último debounce.
     if (estadoBotao != ultimoEstadoBotao) ultimoDebounce = millis();
+    
+    // Atualizar o há quanto tempo o estado do botão foi alterado
+    tempoDesdeDebounce = millis() - ultimoDebounce;
 
     // Executar se o tempo atual menos o do último debounce for maior que a margem definida
-    if (millis() - ultimoDebounce > delayDebounce) {
+    if (tempoDesdeDebounce > delayDebounce) {
 
         // Atualizar o estado do botão
         if (estadoBotaoDebouncing != estadoBotao) {
