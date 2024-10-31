@@ -21,9 +21,6 @@ void debouncing() {
         // Executar se o estado do botão tiver mudado
         if (estadoBotaoDebouncing != estadoBotao) {
             estadoBotaoDebouncing = estadoBotao;
-            if (estadoBotaoDebouncing == HIGH) {
-                acaoAtual();
-            }
         }
     }
 
