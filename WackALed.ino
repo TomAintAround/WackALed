@@ -11,6 +11,8 @@ void debouncing() {
     /*
         Contornar o problema do debouncing dos botões
     */
+
+    // Como o pin do botão está em pull up, é necessário inverter a leitura do pin
     bool estadoBotao = !digitalRead(buttonPin);
 
     // Se o estado do botão for diferente, atualizar o tempo do último debounce.
