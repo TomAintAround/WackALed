@@ -19,7 +19,7 @@ void debouncing() {
     // Executar se o tempo atual menos o do último debounce for maior que a margem definida
     if (millis - ultimoDebounce > delayDebounce) {
 
-        // Executar se o estado do botão tiver mudado
+        // Atualizar o estado do botão
         if (estadoBotaoDebouncing != estadoBotao) {
             estadoBotaoDebouncing = estadoBotao;
         }
@@ -32,7 +32,6 @@ void preJogo() {
     /*
         Primeira fase do jogo
     */
-
 }
 
 void jogo() {
@@ -58,8 +57,10 @@ void acaoAtual() {
 }
 
 void setup() {
+    // Útil para debugging
     Serial.begin(9600);
 
+    // Configurar as portas I/O do Arduino para os LEDs e o botão
     for (byte led = minLed; led <= maxLed; led++) pinMode(led, OUTPUT);
     pinMode(buttonPin, INPUT_PULLUP);
 }
