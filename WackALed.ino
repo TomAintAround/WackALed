@@ -38,6 +38,21 @@ void preJogo() {
     /*
         Primeira fase do jogo
     */
+
+    // Verificar se o botão está a ser premido mais do que 2 segundos
+    if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce >= 2000) {
+
+        // Ligar e apagar os LEDs a cada segundo. Isto é repetido 3 vezes
+        for (byte i = 1; i <= 3; i++) {
+            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
+            delay(1000);
+            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
+            delay(1000);
+        }
+
+        // Vai começar o jogo
+        estadoJogo++;
+    }
 }
 
 void jogo() {
