@@ -19,7 +19,7 @@ void debouncing() {
     if (estadoBotao != ultimoEstadoBotao) ultimoDebounce = millis();
 
     // Executar se o tempo atual menos o do último debounce for maior que a margem definida
-    if (millis - ultimoDebounce > delayDebounce) {
+    if (millis() - ultimoDebounce > delayDebounce) {
 
         // Atualizar o estado do botão
         if (estadoBotaoDebouncing != estadoBotao) {
