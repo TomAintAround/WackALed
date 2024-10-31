@@ -5,6 +5,7 @@ bool ultimoEstadoBotao = LOW;
 bool estadoBotaoDebouncing = LOW;
 long ultimoDebounce = 0;
 byte delayDebounce = 50;
+byte estadoJogo = 1;
 
 void debouncing() {
     /*
@@ -27,8 +28,33 @@ void debouncing() {
     ultimoEstadoBotao = estadoBotao;
 }
 
-void acaoAtual() {
+void preJogo() {
+    /*
+        Primeira fase do jogo
+    */
 
+}
+
+void jogo() {
+    /*
+        Segunda fase do jogo
+    */
+}
+
+void vitoria() {
+    /*
+        Terceira fase do jogo
+    */
+}
+
+void acaoAtual() {
+    /*
+        Escolher a fase do jogo
+        A variável estadoJogo começa a 1
+    */
+    if (estadoJogo == 1) preJogo();
+    else if (estadoJogo == 2) jogo();
+    else if (estadoJogo == 3) vitoria();
 }
 
 void setup() {
@@ -40,4 +66,5 @@ void setup() {
 
 void loop() {
     debouncing();
+    acaoAtual();
 }
