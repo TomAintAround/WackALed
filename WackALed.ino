@@ -1,3 +1,13 @@
+/*
+    Materiais:
+     * 1 Arduino Uno
+     * 1 breadboard
+     * 1 botão
+     * 7 LEDs
+     * 7 resistores de 220 ohms
+     * 11 fios
+*/
+
 byte minLed = 7;
 byte maxLed = 13;
 byte buttonPin = 4;
