@@ -118,8 +118,8 @@ void jogo() {
             delay(1000);
         }
 
-        pontuacao = 0;
-        estadoJogo--;
+        pontuacao = 0; // A pontuação volta a ser 0
+        estadoJogo--; // Voltar ao preJogo
     }
 }
 
