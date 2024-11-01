@@ -64,6 +64,15 @@ void preJogo() {
 
         // Começar o jogo
         estadoJogo++;
+
+        /*
+            Desativar o botão. Caso isto não seja feito,
+            o jogo iniciará logo com o botão ativado e
+            alguns LEDs serão ativados logo no início.
+            Isto acontece graças aos delays usados acima
+            e achei mais fácil contornar este erro assim.
+        */
+        estadoBotaoDebouncing = 0;
     }
 }
 
@@ -72,11 +81,18 @@ void jogo() {
         Segunda fase do jogo
     */
 
+    /*
+        Esta variável é atualizada dentro da condição abaixo.
+        Por isso, para ser usada fora do scope da condição,
+        esta precisa de ser declarada fora dela.
+    */
+    byte ledsLigados;
+
     // Executar a cada 250 milissegundos
     if (millis() - tempoMarcado >= 250) {
 
         // Transformar 1 bit aleatório na pontuação em 1, caso ainda não tenha ocorrido
-        byte ledsLigados = (1 << random(0, 7)) | pontuacao;
+        ledsLigados = (1 << random(0, 7)) | pontuacao;
 
         // Ligar os LEDs de acordo com a variável ledsLigados
         for (byte led = minLed; led <= maxLed; led++) {
@@ -87,6 +103,9 @@ void jogo() {
         // Fazer reset ao timer de 250 milissegundos
         tempoMarcado = millis();
     }
+
+    // Guardar pontuação caso seja premido o botão
+    if (estadoBotaoDebouncing == HIGH) pontuacao = ledsLigados;
 }
 
 void vitoria() {
