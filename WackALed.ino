@@ -105,7 +105,7 @@ void jogo() {
     }
 
     // Guardar pontuação caso seja premido o botão
-    if (estadoBotaoDebouncing == HIGH) pontuacao = ledsLigados;
+    if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce <= 150) pontuacao = ledsLigados;
 }
 
 void vitoria() {
