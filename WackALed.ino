@@ -92,7 +92,7 @@ void jogo() {
     if (millis() - tempoMarcado >= 250) {
 
         // Transformar 1 bit aleatório na pontuação em 1, caso ainda não tenha ocorrido
-        ledsLigados = (1 << random(0, 7)) | pontuacao;
+        ledsLigados = (1 << random(0, maxLed - minLed + 1)) | pontuacao;
 
         // Ligar os LEDs de acordo com a variável ledsLigados
         for (byte led = minLed; led <= maxLed; led++) {
