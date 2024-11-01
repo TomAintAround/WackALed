@@ -46,6 +46,19 @@ void debouncing() {
     ultimoEstadoBotao = estadoBotao;
 }
 
+void piscarLEDs(byte repeticoes) {
+    /*
+        Ligar e desligar os LEDs a cada segundo em um número determinado de vezes
+    */
+
+    for (byte i = 1; i <= repeticoes; i++) {
+        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
+        delay(1000);
+        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
+        delay(1000);
+    }
+}
+
 void preJogo() {
     /*
         Primeira fase do jogo
@@ -53,14 +66,7 @@ void preJogo() {
 
     // Verificar se o botão está a ser premido mais do que 2 segundos
     if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce >= 2000) {
-
-        // Ligar e apagar os LEDs a cada segundo. Isto é repetido 3 vezes
-        for (byte i = 1; i <= 3; i++) {
-            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
-            delay(1000);
-            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
-            delay(1000);
-        }
+        piscarLEDs(3);
 
         // Começar o jogo
         estadoJogo++;
@@ -109,15 +115,7 @@ void jogo() {
 
     // Reiniciar o jogo se o botão for premido num período de 2 segundos ou mais
     if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce >= 2000) {
-
-        // Ligar e apagar os LEDs a cada segundo. Isto é repetido 2 vezes
-        for (byte i = 1; i <= 2; i++) {
-            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
-            delay(1000);
-            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
-            delay(1000);
-        }
-
+        piscarLEDs(2);
         pontuacao = 0;
         estadoJogo--; // Voltar ao preJogo
     }
@@ -131,14 +129,7 @@ void vitoria() {
         Terceira fase do jogo
     */
 
-    // Ligar e apagar os LEDs a cada segundo. Isto é repetido 3 vezes
-    for (byte i = 1; i <= 3; i++) {
-        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
-        delay(1000);
-        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
-        delay(1000);
-    }
-
+    piscarLEDs(3);
     pontuacao = 0;
     estadoJogo = 1; // Voltar ao princípio
 }
