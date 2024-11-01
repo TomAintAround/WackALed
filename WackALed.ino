@@ -17,6 +17,8 @@ long ultimoDebounce = 0;
 long tempoDesdeDebounce = 0;
 byte delayDebounce = 50;
 byte estadoJogo = 1;
+byte pontuacao = 0;
+long tempoMarcado = 0;
 
 void debouncing() {
     /*
@@ -69,6 +71,22 @@ void jogo() {
     /*
         Segunda fase do jogo
     */
+
+    // Executar a cada 250 milissegundos
+    if (millis() - tempoMarcado >= 250) {
+
+        // Transformar 1 bit aleatório na pontuação em 1, caso ainda não tenha ocorrido
+        byte ledsLigados = (1 << random(0, 7)) | pontuacao;
+
+        // Ligar os LEDs de acordo com a pontuação
+        for (byte led = minLed; led <= maxLed; led++) {
+            bool ledLigado = ledsLigados >> (led - minLed) & 1;
+            digitalWrite(led, ledLigado);
+        }
+
+        // Fazer reset ao timer de 250 milissegundos
+        tempoMarcado = millis();
+    }
 }
 
 void vitoria() {
