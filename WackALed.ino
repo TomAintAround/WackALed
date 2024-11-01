@@ -104,7 +104,7 @@ void jogo() {
         tempoMarcado = millis();
     }
 
-    // Guardar pontuação caso seja premido o botão
+    // Guardar pontuação caso seja premido o botão rapidamente
     if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce <= 150) pontuacao = ledsLigados;
 
     // Reiniciar o jogo se o botão for premido num período de 2 segundos ou mais
