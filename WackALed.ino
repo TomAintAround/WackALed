@@ -22,7 +22,7 @@ long tempoMarcado = 0;
 
 void debouncing() {
     /*
-        Contornar o problema do debouncing dos botões
+        Contornar o problema do bouncing dos botões
     */
 
     // Como o pin do botão está em pull up, é necessário inverter a leitura do pin
@@ -48,7 +48,7 @@ void debouncing() {
 
 void piscarLEDs(byte repeticoes) {
     /*
-        Ligar e desligar os LEDs a cada segundo em um número determinado de vezes
+        Ligar e desligar os LEDs a cada segundo em um determinado número de vezes
     */
 
     for (byte i = 1; i <= repeticoes; i++) {
