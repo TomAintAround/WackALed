@@ -31,7 +31,7 @@ void debouncing() {
     // Se o estado do botão for diferente, atualizar o tempo do último debounce.
     if (estadoBotao != ultimoEstadoBotao) ultimoDebounce = millis();
     
-    // Atualizar o há quanto tempo o estado do botão foi alterado
+    // Atualizar há quanto tempo o estado do botão foi alterado
     tempoDesdeDebounce = millis() - ultimoDebounce;
 
     // Executar se o tempo atual menos o do último debounce for maior que a margem definida
@@ -62,7 +62,7 @@ void preJogo() {
             delay(1000);
         }
 
-        // Vai começar o jogo
+        // Começar o jogo
         estadoJogo++;
     }
 }
@@ -78,7 +78,7 @@ void jogo() {
         // Transformar 1 bit aleatório na pontuação em 1, caso ainda não tenha ocorrido
         byte ledsLigados = (1 << random(0, 7)) | pontuacao;
 
-        // Ligar os LEDs de acordo com a pontuação
+        // Ligar os LEDs de acordo com a variável ledsLigados
         for (byte led = minLed; led <= maxLed; led++) {
             bool ledLigado = ledsLigados >> (led - minLed) & 1;
             digitalWrite(led, ledLigado);
@@ -100,6 +100,7 @@ void acaoAtual() {
         Escolher a fase do jogo
         A variável estadoJogo começa a 1
     */
+
     if (estadoJogo == 1) preJogo();
     else if (estadoJogo == 2) jogo();
     else if (estadoJogo == 3) vitoria();
