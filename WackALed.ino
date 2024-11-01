@@ -106,6 +106,21 @@ void jogo() {
 
     // Guardar pontuação caso seja premido o botão
     if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce <= 150) pontuacao = ledsLigados;
+
+    // Reiniciar o jogo se o botão for premido num período de 2 segundos ou mais
+    if (estadoBotaoDebouncing == HIGH && tempoDesdeDebounce >= 2000) {
+
+        // Ligar e apagar os LEDs a cada segundo. Isto é repetido 2 vezes
+        for (byte i = 1; i <= 2; i++) {
+            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
+            delay(1000);
+            for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
+            delay(1000);
+        }
+
+        pontuacao = 0;
+        estadoJogo--;
+    }
 }
 
 void vitoria() {
