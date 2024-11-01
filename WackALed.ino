@@ -120,8 +120,12 @@ void jogo() {
         estadoJogo--; // Voltar ao preJogo
     }
 
-    // Quando todos os LEDs acenderem, ir para a fase da vitória
-    if (pontuacao == 0b1111111) estadoJogo++;
+    /*
+        Quando todos os LEDs acenderem, ir para a fase da vitória.
+        Como se tratam de 7 leds, os LEDS estarem todos acesos é
+        equivalente a pontuação ser 0b10000000 - 1 = 0b1111111.
+    */
+    if (pontuacao == (1 << maxLed - minLed + 1) - 1) estadoJogo++;
 }
 
 void vitoria() {
