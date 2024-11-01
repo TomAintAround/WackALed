@@ -118,15 +118,29 @@ void jogo() {
             delay(1000);
         }
 
-        pontuacao = 0; // A pontuação volta a ser 0
+        pontuacao = 0;
         estadoJogo--; // Voltar ao preJogo
     }
+
+    // Quando todos os LEDs acenderem, ir para a fase da vitória
+    if (pontuacao == 0b1111111) estadoJogo++;
 }
 
 void vitoria() {
     /*
         Terceira fase do jogo
     */
+
+    // Ligar e apagar os LEDs a cada segundo. Isto é repetido 3 vezes
+    for (byte i = 1; i <= 3; i++) {
+        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, HIGH);
+        delay(1000);
+        for (byte led = minLed; led <= maxLed; led++) digitalWrite(led, LOW);
+        delay(1000);
+    }
+
+    pontuacao = 0;
+    estadoJogo = 1; // Voltar ao princípio
 }
 
 void acaoAtual() {
